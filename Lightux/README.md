@@ -6,5 +6,5 @@
 # Whitelist is also shit btw.
 # Imagine making local key = "asdhakhdad" 🤣🤣🤣🤣🤣
 # dumb shitass owned lmao 
-# We'll crack again when u update your script again
+# L
 [images](https://user-images.githubusercontent.com/100031567/155893843-edd3324b-a7a5-4095-9757-dadc4a8e0f06.png)
