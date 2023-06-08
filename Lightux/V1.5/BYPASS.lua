@@ -1,7 +1,7 @@
 local originalReadFile = readfile
 readfile = function(path)
    print("BYPASSED!")
-   return "nuZEwG3evs83xi1"
+   return "QHvMlkGYu0fExAA"
 end
 
 
