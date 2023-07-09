@@ -1,4 +1,4 @@
 return {
-	["Mobile"] = "f3kfUttFXJHuRD8N",
-	["Pc"] = "Gw8gfYKtjdSUyqe3"
+	["Mobile"] = "OAwvh9HlJuu0y07A",
+	["Pc"] = "zxKzieJYCWdpZ0pY"
 }
