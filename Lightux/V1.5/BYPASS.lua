@@ -26,11 +26,6 @@ readfile = function(path)
 	print("Bypassed by Hanki and Alex!")
 	return bypasskey
 end
-local originalIsFile = isfile
-isfile = function(path)
-	print("Bypassed by Hanki: "..path)
-	return true
-end
 
 -- BROOO THEIR LIGHTNING BACKGROUND SUCKS. IT FILLS FULL SCREEN
 -- Lightux game detection sucks my ass
