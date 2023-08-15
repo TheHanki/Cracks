@@ -1,0 +1,49 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "yBloodz TPS Ultimate soccer", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+_G.Key = "ult69"
+_G.KeyInput = "string"
+
+function MakeScriptHub()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/yBloodz/TPS-script/main/Tps%20ult%20finale"))()
+end
+
+local Tab = Window:MakeTab({
+	Name = "Key",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddParagraph("Information","The key changes after some days, so make sure to get key if you get incorrect key.")
+
+Tab:AddTextbox({
+	Name = "Enter key",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		_G.KeyInput = Value
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Check key",
+	Callback = function()
+      		if _G.KeyInput == _G.Key then
+                  MakeScriptHub()
+              else
+                  wait(0.1)
+game.StarterGui:SetCore("SendNotification", {
+Title = "Incorrect Key"; -- the title 
+Text = "Click on Get Key and paste it in any browser to get the key!"; -- what the text says 
+Duration = 10; -- how long the notification should in secounds
+})
+              end
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Get Key [paste in any browser]",
+	Callback = function()
+      		setclipboard("https://link-target.net/531202/tps-ultimate-soccer-key")
+  	end    
+})
