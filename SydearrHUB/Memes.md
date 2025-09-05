@@ -7,3 +7,6 @@
 # Oha ap bu ui libi nasıl yaptınızzz!!!!
 <img width="622" height="351" alt="image" src="https://github.com/user-attachments/assets/2ebe8213-74c9-4981-b9a3-4aabca2d5228" />
 <img width="1235" height="431" alt="image" src="https://github.com/user-attachments/assets/5b62e1ea-31a4-44a1-ac34-a0442519c370" />
+
+# Oh Shit Open Source?!?!!?
+<img width="241" height="535" alt="image" src="https://github.com/user-attachments/assets/4d949833-58a1-4e9d-b012-141f68198531" />
