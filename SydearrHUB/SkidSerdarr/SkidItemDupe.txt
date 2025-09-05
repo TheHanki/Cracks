@@ -1,0 +1,128 @@
+-- Mevcut kodunuzun devamı...
+-- (Önceki kodlarınız aynı kalacak, sadece yeni eklemeler aşağıda)
+
+-- Eşya Kopyalama Butonu
+local ItemDupeButton = Instance.new("TextButton")
+ItemDupeButton.Size = UDim2.new(0.8, 0, 0.15, 0)
+ItemDupeButton.Position = UDim2.new(0.1, 0, 0.7, 0) -- ESP butonunun altına yerleştirildi
+ItemDupeButton.BackgroundColor3 = Color3.fromRGB(255, 165, 0) -- Turuncu renk
+ItemDupeButton.TextColor3 = Color3.new(1, 1, 1)
+ItemDupeButton.Text = "Eşya Kopyalama: Kapalı"
+ItemDupeButton.Font = Enum.Font.SourceSansBold
+ItemDupeButton.TextScaled = true
+ItemDupeButton.Parent = MenuFrame
+
+-- Eşya Kopyalama Durumu
+local itemDupeEnabled = false
+local itemDupeConnection
+
+-- Eşya Kopyalama Fonksiyonu
+local function toggleItemDupe()
+    itemDupeEnabled = not itemDupeEnabled
+    ItemDupeButton.Text = "Eşya Kopyalama: " .. (itemDupeEnabled and "Açık" or "Kapalı")
+    ItemDupeButton.BackgroundColor3 = itemDupeEnabled and Color3.fromRGB(255, 0, 0) or Color3.fromRGB(255, 165, 0)
+
+    if itemDupeEnabled then
+        itemDupeConnection = UserInputService.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 and itemDupeEnabled then
+                local target = Mouse.Target
+                if target and target:IsA("BasePart") and target.Parent then
+                    local item = target.Parent
+                    if item:IsA("Model") or item:IsA("Tool") then
+                        -- Eşyayı kopyala
+                        local clonedItem = item:Clone()
+                        clonedItem.Parent = Workspace
+                        -- Kopyalanan eşyayı oyuncunun pozisyonuna yakın bir yere yerleştir
+                        if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                            clonedItem:MoveTo(LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0, 2, 0))
+                        end
+                        -- Eğer eşya bir araç (Tool) ise, oyuncunun sırt çantasına ekle
+                        if clonedItem:IsA("Tool") then
+                            clonedItem.Parent = LocalPlayer:WaitForChild("Backpack")
+                        end
+                    end
+                end
+            end
+        end)
+    else
+        if itemDupeConnection then
+            itemDupeConnection:Disconnect()
+            itemDupeConnection = nil
+        end
+    end
+end
+
+ItemDupeButton.MouseButton1Click:Connect(toggleItemDupe)
+
+-- Menü Açma/Kapama (Mevcut kodunuza ek olarak, menü açıldığında/kapandığında ESP ve Eşya Kopyalama menülerini kontrol etmek için)
+MainButton.MouseButton1Click:Connect(function()
+    menuOpen = not menuOpen
+    MenuFrame.Visible = menuOpen
+    -- Eğer menü kapanırsa, hız/zıplama ve ESP menülerini de kapat
+    if not menuOpen then
+        speedJumpMenuFrame.Visible = false
+        SpeedJumpButton.Text = "Hız ve Zıplama"
+        SpeedJumpButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+        EspFrame.Visible = false
+        EspButton.Text = "ESP Menüsü"
+        EspButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    end
+end)
+
+-- Mevcut ESP Listesi Güncelleme (Eksik kısmı tamamlayarak)
+local function updateEspList()
+    for _, child in pairs(EspScrollingFrame:GetChildren()) do
+        if child:IsA("TextButton") then
+            child:Destroy()
+        end
+    end
+
+    local yOffset = 0
+    for _, player in pairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer then
+            local button = Instance.new("TextButton")
+            button.Size = UDim2.new(1, -10, 0, 30)
+            button.Position = UDim2.new(0, 5, 0, yOffset)
+            button.Text = player.Name
+            button.TextColor3 = Color3.new(1, 1, 1)
+            button.BackgroundColor3 = espEnabledPlayers[player] and Color3.fromRGB(0, 255, 0) or Color3.fromRGB(255, 0, 0)
+            button.TextScaled = true
+            button.Font = Enum.Font.SourceSansBold
+            button.Parent = EspScrollingFrame
+
+            button.MouseButton1Click:Connect(function()
+                if espEnabledPlayers[player] then
+                    clearEsp(player)
+                    button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+                else
+                    espEnabledPlayers[player] = true
+                    createEsp(player)
+                    button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+                end
+            end)
+
+            yOffset = yOffset + 35
+        end
+    end
+    EspScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, yOffset)
+end
+
+-- ESP Menüsü Açma/Kapama
+EspButton.MouseButton1Click:Connect(function()
+    EspFrame.Visible = not EspFrame.Visible
+    EspButton.Text = EspFrame.Visible and "ESP Menüsü Kapat" or "ESP Menüsü"
+    EspButton.BackgroundColor3 = EspFrame.Visible and Color3.fromRGB(255, 0, 0) or Color3.fromRGB(0, 255, 0)
+    if EspFrame.Visible then
+        updateEspList()
+    end
+end)
+
+-- Oyuncu ekleme/çıkma olayları
+Players.PlayerAdded:Connect(updateEspList)
+Players.PlayerRemoving:Connect(function(player)
+    clearEsp(player)
+    updateEspList()
+end)
+
+-- İlk ESP listesi güncelleme
+updateEspList()
