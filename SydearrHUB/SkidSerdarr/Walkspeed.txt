@@ -1,0 +1,23 @@
+-- LocalScript (StarterGui > ScreenGui içine yerleştir)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+-- Butonları tanımla (Roblox Studio'da butonların adlarını doğru ayarladığından emin ol)
+local minusButton = script.Parent:WaitForChild("MinusButton") -- "-50" yazan buton
+local plusButton = script.Parent:WaitForChild("PlusButton") -- "+50" yazan buton
+
+-- Başlangıç zıplama gücü
+local defaultJumpPower = humanoid.JumpPower
+
+-- -50 butonu için fonksiyon
+minusButton.MouseButton1Click:Connect(function()
+    humanoid.JumpPower = humanoid.JumpPower - 50
+    print("Zıplama gücü: " .. humanoid.JumpPower)
+end)
+
+-- +50 butonu için fonksiyon
+plusButton.MouseButton1Click:Connect(function()
+    humanoid.JumpPower = humanoid.JumpPower + 50
+    print("Zıplama gücü: " .. humanoid.JumpPower)
+end)
