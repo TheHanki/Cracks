@@ -17,6 +17,10 @@
 <img width="654" height="106" alt="image" src="https://github.com/user-attachments/assets/38007e6b-4781-4d08-9359-aba068d4975a" />
 <img width="636" height="366" alt="image" src="https://github.com/user-attachments/assets/5ca8506c-4041-4fc8-a4f8-22a48b3b294f" />
 r6 31 çek tool
+<img width="1006" height="227" alt="image" src="https://github.com/user-attachments/assets/8aeec010-9020-44ef-af15-4d255178d7b8" />
+# aga öyle deme ama biz skid değiliz ya hepsini biz kendimiz yaptık 😡😡😡😡😡
+
+
 <img width="163" height="163" alt="image" src="https://github.com/user-attachments/assets/c38d1ec4-8c57-450d-aa00-a6e53fe274d0" />
 
 # Yorumu size bırakıyorum aga
