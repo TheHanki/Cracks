@@ -1,0 +1,172 @@
+-- Services
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
+-- Variables
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- Create the ScreenGui
+local screenGui = Instance.new("ScreenGui", playerGui)
+screenGui.IgnoreGuiInset = true
+
+-- Create the black background frame
+local backgroundFrame = Instance.new("Frame", screenGui)
+backgroundFrame.Size = UDim2.new(1, 0, 1, 0)
+backgroundFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+
+-- Title text
+local title = Instance.new("TextLabel", backgroundFrame)
+title.Text = "Sydearr Hub"
+title.Size = UDim2.new(0.8, 0, 0.2, 0)
+title.Position = UDim2.new(0.1, 0, -0.5, 0)  -- Başlangıçta ekran dışında
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.BackgroundTransparency = 1
+title.TextScaled = true
+title.Font = Enum.Font.SourceSansBold
+
+-- Play Button
+local playButton = Instance.new("TextButton", backgroundFrame)
+playButton.Text = "Oyna"
+playButton.Size = UDim2.new(0.3, 0, 0.1, 0)
+playButton.Position = UDim2.new(0.35, 0, 0.6, 0)
+playButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+playButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+playButton.TextScaled = true
+playButton.Font = Enum.Font.SourceSansBold
+
+-- Options Frame
+local optionsFrame = Instance.new("Frame", backgroundFrame)
+optionsFrame.Size = UDim2.new(0.8, 0, 0.4, 0)
+optionsFrame.Position = UDim2.new(0.1, 0, 0.3, 0)
+optionsFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+optionsFrame.Visible = false  -- Initially hidden
+
+-- Infinite Jump Button
+local infiniteJumpButton = Instance.new("TextButton", optionsFrame)
+infiniteJumpButton.Text = "Sınırsız Zıplama"
+infiniteJumpButton.Size = UDim2.new(0.9, 0, 0.2, 0)
+infiniteJumpButton.Position = UDim2.new(0.05, 0, 0.1, 0)
+infiniteJumpButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+infiniteJumpButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+infiniteJumpButton.TextScaled = true
+infiniteJumpButton.Font = Enum.Font.SourceSansBold
+
+-- Jump Height Slider
+local jumpHeightSlider = Instance.new("TextButton", optionsFrame)
+jumpHeightSlider.Text = "Zıplama Yüksekliği: 100"
+jumpHeightSlider.Size = UDim2.new(0.9, 0, 0.2, 0)
+jumpHeightSlider.Position = UDim2.new(0.05, 0, 0.35, 0)
+jumpHeightSlider.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+jumpHeightSlider.TextColor3 = Color3.fromRGB(255, 255, 255)
+jumpHeightSlider.TextScaled = true
+jumpHeightSlider.Font = Enum.Font.SourceSansBold
+
+-- Close Button
+local closeButton = Instance.new("TextButton", optionsFrame)
+closeButton.Text = "Kapat"
+closeButton.Size = UDim2.new(0.9, 0, 0.2, 0)
+closeButton.Position = UDim2.new(0.05, 0, 0.7, 0)
+closeButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.TextScaled = true
+closeButton.Font = Enum.Font.SourceSansBold
+
+-- Animate title (Move from top to center)
+local titleTween = TweenService:Create(title, TweenInfo.new(1, Enum.EasingStyle.Bounce, Enum.EasingDirection.Out), {Position = UDim2.new(0.1, 0, 0.1, 0)})
+titleTween:Play()
+
+-- Jump Variables
+local humanoid = player.Character:WaitForChild("Humanoid")
+local jumpEnabled = false
+local jumpPower = 100  -- Default jump power
+
+-- Function to handle mobile jump button
+local function onJumpButtonPressed()
+    if jumpEnabled and humanoid then
+        humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+        humanoid.JumpPower = jumpPower  -- Set jump power
+    end
+end
+
+-- Update function to set jump power
+local function update(dt)
+    if jumpEnabled and humanoid then
+        humanoid.JumpPower = jumpPower  -- Set the jump power
+    end
+end
+
+-- Connect update function to run service
+RunService.Heartbeat:Connect(update)
+
+-- Hide menu function (when Play is pressed)
+local function hideMenu()
+    -- Fade out buttons
+    local fadeOutInfo = TweenInfo.new(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
+    local fadeOutPlay = TweenService:Create(playButton, fadeOutInfo, {TextTransparency = 1, BackgroundTransparency = 1})
+    
+    fadeOutPlay:Play()
+    
+    -- Slide the title up and fade out
+    local titleHideTween = TweenService:Create(title, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {Position = UDim2.new(0.1, 0, -0.5, 0)})
+    titleHideTween:Play()
+    
+    -- Fade out the background
+    local backgroundTween = TweenService:Create(backgroundFrame, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {BackgroundTransparency = 1})
+    backgroundTween:Play()
+
+    -- After the animation is done, disable the GUI and show options
+    wait(1)
+    playButton.Visible = false
+    optionsFrame.Visible = true
+
+    -- Animate options frame
+    optionsFrame.Position = UDim2.new(0.1, 0, 0.7, 0)  -- Start position
+    local optionsTween = TweenService:Create(optionsFrame, TweenInfo.new(1, Enum.EasingStyle.Bounce, Enum.EasingDirection.Out), {Position = UDim2.new(0.1, 0, 0.3, 0)})
+    optionsTween:Play()
+end
+
+-- When Play Button is pressed
+playButton.MouseButton1Click:Connect(function()
+    hideMenu()
+end)
+
+-- Sınırsız zıplama butonuna tıklandığında
+infiniteJumpButton.MouseButton1Click:Connect(function()
+    jumpEnabled = not jumpEnabled  -- Toggle infinite jump on/off
+    if jumpEnabled then
+        infiniteJumpButton.Text = "Sınırsız Zıplama (Açık)"
+        print("Sınırsız zıplama açıldı.")
+    else
+        infiniteJumpButton.Text = "Sınırsız Zıplama (Kapalı)"
+        print("Sınırsız zıplama kapandı.")
+    end
+end)
+
+-- Zıplama yüksekliğini ayarlamak için slider
+jumpHeightSlider.MouseButton1Click:Connect(function()
+    jumpPower = jumpPower + 10  -- Increase jump power
+    if jumpPower > 100 then jumpPower = 30 end  -- Reset after max height
+    jumpHeightSlider.Text = "Zıplama Yüksekliği: " .. jumpPower  -- Update display text
+    print("Zıplama yüksekliği ayarlandı: " .. jumpPower)
+end)
+
+-- Kapat butonuna tıklandığında
+closeButton.MouseButton1Click:Connect(function()
+    jumpEnabled = false  -- Sınırsız zıplama kapalı
+    infiniteJumpButton.Text = "Sınırsız Zıplama (Kapalı)"  -- Buton yazısını güncelle
+    optionsFrame.Visible = false  -- Seçenekler çerçevesini gizle
+    backgroundFrame.BackgroundTransparency = 0  -- Arka planı görünür yap
+    title.Position = UDim2.new(0.1, 0, 0.1, 0)  -- Başlığı eski konumuna getir
+    playButton.Visible = true  -- Oyna butonunu görünür yap
+    playButton.TextTransparency = 0  -- Oyna butonunun şeffaflığını sıfırla
+    playButton.BackgroundTransparency = 0  -- Oyna butonunun arka planını görünür yap
+
+    -- Menü tamamen kapansın
+    screenGui:Destroy()  -- Tüm GUI'yi kapat
+end)
+
+-- Mobile jump button listener
+UserInputService.JumpRequest:Connect(onJumpButtonPressed)
