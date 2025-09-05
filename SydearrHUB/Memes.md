@@ -1,1 +1,5 @@
-![alt text]((https://media.discordapp.net/attachments/1375751933255614597/1413551059795972177/image.png?ex=68bc5783&is=68bb0603&hm=8bcd29523ac7fc370865700815d5a121a99373f0a2184cdbe344e0d8290aec1a&=&format=webp&quality=lossless&width=1067&height=373))
+<img width="550" height="314" alt="image" src="https://github.com/user-attachments/assets/35e4a148-d228-4d56-91f2-07127e5c28b9" />
+<img width="354" height="184" alt="image" src="https://github.com/user-attachments/assets/c2e58ce4-7325-4311-a9be-9873148de3bd" />
+
+# Silent aim için hook olmaz, kesinlikle raycast kullancan çünkü raycast kulanırken merminin ismini falan bilip ona göre yazman gerekmiyor.... 💀💀💀💀💀 
+<img width="351" height="94" alt="image" src="https://github.com/user-attachments/assets/f3ac82ea-6236-4667-823b-e7ad257406e0" />
