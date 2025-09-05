@@ -10,3 +10,11 @@
 
 # Oh Shit Open Source?!?!!?
 <img width="241" height="535" alt="image" src="https://github.com/user-attachments/assets/4d949833-58a1-4e9d-b012-141f68198531" />
+
+# Ohaaaaaaa
+<img width="294" height="92" alt="image" src="https://github.com/user-attachments/assets/a1e996de-d88a-4d87-8c19-8fecff426d30" />
+<img width="425" height="43" alt="image" src="https://github.com/user-attachments/assets/6c2a7fd8-621b-438b-ba51-b4212051d840" />
+# Yorumu size bırakıyorum aga
+
+# Anasını siktiğimin ucubesi roblox exploitlerinin zaten clientte çalıştığını bilmiyo
+<img width="841" height="187" alt="image" src="https://github.com/user-attachments/assets/dd779f79-42a2-494a-9e59-d9eed81cda4a" />
