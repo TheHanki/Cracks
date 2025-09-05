@@ -1,0 +1,1 @@
+# Serdarr yavaşş yapma durr
