@@ -1,0 +1,181 @@
+-- // Servisler
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+local HttpService = game:GetService("HttpService")
+local TextChatService = game:GetService("TextChatService")
+local LocalPlayer = Players.LocalPlayer
+
+local WEBHOOK_URL = "https://discord.com/api/webhooks/1407113865791144008/7Nj3N11x9zYza4PsNgmIem-9ipVhU4qExJv5_7H7kMd_qLhQpDidBHZu1moWjzukrq7p"
+local GROUP_ID = 3529061
+local OP_START = 460000
+local OP_DECREASE = 40000
+local currentOP = OP_START
+
+if game.PlaceId ~= 6912444494 then
+    TeleportService:Teleport(6912444494)
+    return
+end
+
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+local EgitimScreenGui = PlayerGui:WaitForChild("Eğitim")
+local PanelFrames = EgitimScreenGui:WaitForChild("PanelFrames")
+local EgitimFrame = PanelFrames:WaitForChild("Eğitim")
+local Butonlar = EgitimFrame:WaitForChild("Butonlar")
+
+task.spawn(function()
+    while true do  
+        if not EgitimFrame.Visible then  
+            EgitimFrame.Visible = true  
+        end  
+        task.wait(0.5)  
+    end
+end)
+
+local function clickButtonAdaptively(button, offsetX, offsetY)
+    offsetX = offsetX or 0
+    offsetY = offsetY or 0
+    local absPos = button.AbsolutePosition  
+    local absSize = button.AbsoluteSize  
+    local clickX = absPos.X + absSize.X/2 + offsetX  
+    local clickY = absPos.Y + absSize.Y/2 + offsetY  
+    VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, true, game, 0)  
+    task.wait(0.05)  
+    VirtualInputManager:SendMouseButtonEvent(clickX, clickY, 0, false, game, 0)
+end
+
+local function getGroupRanks()
+    local ranks = {}
+    for _, plr in ipairs(Players:GetPlayers()) do
+        local rank = "Guest"
+        local success, result = pcall(function()
+            return plr:GetRoleInGroup(GROUP_ID)
+        end)
+        if success and result and result ~= "" then
+            rank = result
+        end
+        table.insert(ranks, plr.Name .. " → " .. rank)
+    end
+    return table.concat(ranks, "\n")
+end
+
+local function generateDiscordLog()
+    local toplam = #Players:GetPlayers()
+    local denetmenSay, tskSay = 0, 0
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr.Team then
+            if plr.Team.Name == "Denetmenler" then denetmenSay += 1 end
+            if plr.Team.Name == "Türk Silahlı Kuvvetleri" then tskSay += 1 end
+        end
+    end
+    local kisiListesi = {}
+    for _, plr in ipairs(Players:GetPlayers()) do
+        table.insert(kisiListesi, plr.Name)
+    end
+    local kisiListesiStr = table.concat(kisiListesi, ", ")
+    local kalanText = tostring(math.floor(currentOP/1000)).."k"
+    local groupRanks = getGroupRanks()
+    local logEmbed = {
+        title = "Sydearr Team Logs",
+        color = 16776960,
+        fields = {
+            {name="Kişi Sayısı",value=tostring(toplam),inline=true},
+            {name="Kişi Listesi",value=kisiListesiStr},
+            {name="Atılan Oyuncular",value="0"},
+            {name="Denetmenler Sayısı",value=tostring(denetmenSay),inline=true},
+            {name="TSK Sayısı",value=tostring(tskSay)},
+            {name="Market Gereksinimi",value="Yok"},
+            {name="Whitelist",value="True",inline=true},
+            {name="Security",value="Active",inline=true},
+            {name="Problems",value="0",inline=true},
+            {name="Eğitim Durumu",value="Successful"},
+            {name="OP Miktarı",value="40k"},
+            {name="Subay Değeri",value="500k"},
+            {name="Subay Olmaya",value=kalanText},
+            {name="Bot Rütbesi",value="OF-1/A Asteğmen"},
+            {name="Grup Rütbeleri",value=groupRanks},
+        },
+        footer = {text="JobId: "..game.JobId},
+        timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
+    }
+    currentOP = math.max(0, currentOP - OP_DECREASE)
+    return logEmbed
+end
+
+local function sendDiscordLog()
+    local logEmbed = generateDiscordLog()
+    local req = (syn and syn.request) or http_request or request
+    if req then
+        req({
+            Url = WEBHOOK_URL,
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json"},
+            Body = HttpService:JSONEncode({content="",embeds={logEmbed}})
+        })
+    else
+        warn("Executor HTTP Request desteklemiyor.")
+    end
+end
+
+task.spawn(function()
+    while true do
+        local firstButton = nil
+        for _, btn in ipairs(Butonlar:GetChildren()) do
+            if btn:IsA("TextButton") or btn:IsA("ImageButton") then
+                firstButton = btn
+                break
+            end
+        end
+        if firstButton then
+            clickButtonAdaptively(firstButton, 0, 40)
+        end
+        task.wait(2)
+    end
+end)
+
+-- GUI
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "LogGui"
+ScreenGui.Parent = PlayerGui
+
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0,160,0,60)
+Frame.Position = UDim2.new(1,-180,0,10)
+Frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
+Frame.Parent = ScreenGui
+
+local UICornerFrame = Instance.new("UICorner", Frame)
+UICornerFrame.CornerRadius = UDim.new(0,12)
+
+local logButton = Instance.new("TextButton")
+logButton.Size = UDim2.new(1,-20,1,-20)
+logButton.Position = UDim2.new(0,10,0,10)
+logButton.Text = "Gönder"
+logButton.BackgroundColor3 = Color3.fromRGB(50,150,250)
+logButton.TextColor3 = Color3.fromRGB(255,255,255)
+logButton.Font = Enum.Font.SourceSansBold
+logButton.TextSize = 20
+logButton.Parent = Frame
+
+local UICornerBtn = Instance.new("UICorner", logButton)
+UICornerBtn.CornerRadius = UDim.new(0,10)
+
+logButton.MouseButton1Click:Connect(function()
+    sendDiscordLog()
+end)
+
+-- ===============================
+--  EKLENDİ: Oyunculara :team (kişi) De yazma sistemi
+-- ===============================
+task.spawn(function()
+    while true do
+        for _, plr in ipairs(Players:GetPlayers()) do
+            if plr ~= LocalPlayer then
+                if plr.Team and plr.Team.Name ~= "Denetmenler" then
+                    TextChatService.TextChannels.RBXGeneral:SendAsync(":team "..plr.Name.." De")
+                end
+            end
+        end
+        task.wait(0.1)
+    end
+end)
