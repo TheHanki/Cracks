@@ -1,1 +1,1 @@
-![alt text]([htt](https://media.discordapp.net/attachments/1375751933255614597/1413551059795972177/image.png?ex=68bc5783&is=68bb0603&hm=8bcd29523ac7fc370865700815d5a121a99373f0a2184cdbe344e0d8290aec1a&=&format=webp&quality=lossless&width=1067&height=373))
+![alt text]((https://media.discordapp.net/attachments/1375751933255614597/1413551059795972177/image.png?ex=68bc5783&is=68bb0603&hm=8bcd29523ac7fc370865700815d5a121a99373f0a2184cdbe344e0d8290aec1a&=&format=webp&quality=lossless&width=1067&height=373))
