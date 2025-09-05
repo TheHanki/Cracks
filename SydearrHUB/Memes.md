@@ -14,6 +14,8 @@
 # Ohaaaaaaa
 <img width="294" height="92" alt="image" src="https://github.com/user-attachments/assets/a1e996de-d88a-4d87-8c19-8fecff426d30" />
 <img width="425" height="43" alt="image" src="https://github.com/user-attachments/assets/6c2a7fd8-621b-438b-ba51-b4212051d840" />
+<img width="654" height="106" alt="image" src="https://github.com/user-attachments/assets/38007e6b-4781-4d08-9359-aba068d4975a" />
+
 # Yorumu size bırakıyorum aga
 
 # Anasını siktiğimin ucubesi roblox exploitlerinin zaten clientte çalıştığını bilmiyo
