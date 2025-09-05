@@ -1,0 +1,228 @@
+-- Hizmetler
+yerel Oyuncular = oyun:GetService("Oyuncular")
+yerel SoundService = oyun:GetService("SoundService")
+yerel UserInputService = oyun:GetService("KullanıcıInputService")
+yerel LocalPlayer = Oyuncular.LocalPlayer
+
+-- GUI oluşturma
+yerel ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = LocalPlayer.PlayerGui
+ScreenGui.Name = "ScreenGui"
+ScreenGui.ResetOnSpawn = false
+
+-- Ana Cereve
+yerel Çerçeve = Instance.new("Çerçeve")
+Çerçeve.Boyut = UDim2.new(0, 300, 0, 200)
+Çerçeve.Konum = UDim2.new(0,5, -150, 0,5, -100)
+Çerçeve.ArkaplanRengi3 = Renk3.fromRGB(50, 50, 50)
+Çerçeve.SınırBoyutPiksel = 0
+Çerçeve.Üst = ScreenGui
+Çerçeve.KliplerSoydan Gelenler = true
+Çerçeve.Aktif = true
+
+-- Şifre giriş alanı
+yerel Metin Kutusu = Örnek.new("Metin Kutusu")
+TextBox.Boyut = UDim2.new(0.667, 0, 0.15, 0)
+TextBox.Position = UDim2.new(0,5, 0, 0,2, 0)
+TextBox.BağlantıNoktası = Vector2.new(0.5, 0)
+TextBox.PlaceholderText = "Kodu Giriniz!"
+MetinKutusu.Metin = ""
+TextBox.ArkaplanRengi3 = Renk3.fromRGB(255, 255, 255)
+TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.Parent = Çerçeve
+
+-- Onayla butonu
+yerel ConfirmButton = Instance.new("TextButton")
+ConfirmButton.Size = UDim2.new(0,333, 0, 0,15, 0)
+ConfirmButton.Position = UDim2.new(0,5, 0, 0,4, 0)
+OnaylamaDüğmesi.BağlantıNoktası = Vector2.new(0.5, 0)
+ConfirmButton.Text = "Onayla!"
+ConfirmButton.ArkaplanRengi3 = Renk3.fromRGB(0, 255, 0)
+ConfirmButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ConfirmButton.Parent = Çerçeve
+
+-- Hata mesajı
+yerel ErrorLabel = Instance.new("TextLabel")
+ErrorLabel.Size = Udim2.new(0,667, 0, 0,15, 0)
+ErrorLabel.Position = UDim2.new(0,5, 0, 0,6, 0)
+HataEtiketi.BağlantıNoktası = Vector2.new(0.5, 0)
+HataEtiketi.Metni = ""
+ErrorLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+ErrorLabel.ArkaplanŞeffaflığı = 1
+ErrorLabel.Parent = Çerçeve
+
+-- Hata sesi
+yerel BipSound = Instance.new("Ses")
+BipSound.SoundId = "rbxasset://sesler/uuhhh.mp3"
+BipSound.Parent = SoundService
+
+-- Oyuncu listesi Şereşevesi
+yerel PlayerListFrame = Instance.new("Çerçeve")
+PlayerListFrame.Size = UDim2.new(0, 300, 0, 300)
+PlayerListFrame.Position = UDim2.new(0,5, -150, 0,5, -150)
+PlayerListFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+PlayerListFrame.BorderSizePixel = 0
+PlayerListFrame.Visible = false
+PlayerListFrame.Parent = EkranGui
+PlayerListFrame.ClipsDescendants = true
+PlayerListFrame.Active = true
+
+-- Açma/Kapama butonu
+yerel ToggleButton = Instance.new("TextButton")
+ToggleButton.Boyut = UDim2.new(0,333, 0, 0,1, 0)
+ToggleButton.Pozisyon = UDim2.new(0, 0, 0, 0)
+ToggleButton.Text = "Kapat"
+ToggleButton.ArkaplanRengi3 = Renk3.fromRGB(255, 0, 0)
+ToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleButton.Parent = OyuncuListFrame
+
+-- Oyuncu listesi içi kaydırma Şerişevesi
+yerel KaydırmaÇerçevesi = Instance.new("KaydırmaÇerçevesi")
+KaydırmaÇerçevesi.Boyutu = UDim2.new(0,933, 0, 0,867, 0)
+KaydırmaÇerçevesi.Pozisyonu = UDim2.new(0,033, 0, 0,133, 0)
+KaydırmaÇerçevesi.ArkaplanŞeffaflığı = 1
+KaydırmaÇerçevesi.KaydırmaÇubuğuKalınlığı = 5
+KaydırmaÇerçevesi.Üst = OynatıcıListÇerçevesi
+
+-- Yeniden boyutlandırma butonları
+yerel Yeniden Boyutlandırma Düğmesi = Instance.new("TextButton")
+Yeniden Boyutlandırma Düğmesi.Boyut = UDim2.new(0, 20, 0, 20)
+Yeniden Boyutlandırma Düğmesi.Konumu = UDim2.new(1, -20, 1, -20)
+Yeniden Boyutlandırma Düğmesi.Metin = ""
+Yeniden Boyutlandırma Düğmesi.Arka Plan Rengi3 = Color3.fromRGB(255, 255, 0)
+Yeniden Boyutlandırma Düğmesi.Üst = Çerçeve
+
+yerel Yeniden BoyutlandırmaDüğmesi2 = Örnek.new("MetinDüğmesi")
+Yeniden Boyutlandırma Düğmesi2.Boyut = UDim2.yeni(0, 20, 0, 20)
+Yeniden BoyutlandırButton2.Pozisyon = UDim2.new(1, -20, 1, -20)
+Yeniden BoyutlandırButton2.Text = ""
+Yeniden BoyutlandırButton2.Arka PlanRengi3 = Renk3.fromRGB(255, 255, 0)
+Yeniden Boyutlandırma Düğmesi2.Üst = PlayerListFrame
+
+-- Hareketi bozmadan değiştirenleri
+yerel sürükleme = false
+yerel dragStart = nil
+yerel startPos = nil
+
+-- Yeniden boyutlandırma değişiklikleri
+yerel yeniden boyutlandırma = false
+yerel yeniden boyutlandırmaBaşlangıcı = nil
+yerel orijinalBoyut = nil
+yerel currentFrame = nil
+
+-- Hareket ettirme fonksiyonu
+yerel fonksiyon enableDragging(çerçeve)
+    çerçeve.InputBegan:Connect(fonksiyon(giriş)
+        eğer input.UserInputType == Enum.UserInputType.MouseButton1 veya input.UserInputType == Enum.UserInputType.Touch ise
+            eğer input.Target ~= ResizeButton ve input.Target ~= ResizeButton2 ise
+                sürükleme = doğru
+                dragStart = giriş.Pozisyon
+                startPos = çerçeve.Pozisyon
+                giriş.Değiştirildi:Bağlan(fonksiyon()
+                    eğer input.UserInputState == Enum.UserInputState.End ise
+                        sürükleme = false
+                    son
+                son)
+            son
+        son
+    son)
+
+    çerçeve.InputChanged:Connect(fonksiyon(giriş)
+        eğer sürükleme ve (input.UserInputType == Enum.UserInputType.MouseMovement veya input.UserInputType == Enum.UserInputType.Touch) ise
+            yerel delta = giriş.Pozisyon - dragStart
+            çerçeve.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+        son
+    son)
+son
+
+-- Yeniden boyutlandırma fonksiyonu
+yerel fonksiyon enableResizing(çerçeve, yeniden boyutlandırmaDüğmesi)
+    resizeButton.InputBegan:Connect(fonksiyon(giriş)
+        eğer input.UserInputType == Enum.UserInputType.MouseButton1 veya input.UserInputType == Enum.UserInputType.Touch ise
+            yeniden boyutlandırma = true
+            yeniden boyutlandırmaBaşlangıcı = giriş.Konumu
+            orijinalBoyut = çerçeve.Boyut
+            geçerliÇerçeve = çerçeve
+            giriş.Değiştirildi:Bağlan(fonksiyon()
+                eğer input.UserInputState == Enum.UserInputState.End ise
+                    yeniden boyutlandırma = false
+                    geçerliÇerçeve = nil
+                son
+            son)
+        son
+    son)
+son
+
+-- Genel yeniden boyutlandırma işlemi
+UserInputService.InputChanged:Bağlan(işlev(giriş)
+    yeniden boyutlandırma ve currentFrame ve (input.UserInputType == Enum.UserInputType.MouseMovement veya input.UserInputType == Enum.UserInputType.Touch) ise
+        yerel delta = giriş.Pozisyon - yeniden boyutlandırmaBaşlangıcı
+        yerel newWidth = math.max(150, orijinalBoyut.X.Offset + delta.X)
+        yerel newHeight = math.max(150, orijinalBoyut.Y.Ofset + delta.Y)
+        currentFrame.Size = UDim2.new(0, yeniGenişlik, 0, yeniYükseklik)
+    son
+son)
+
+-- Hareket ve yeniden boyutlandırmayı etkinleştirebilir
+Sürüklemeyi etkinleştir(Çerçeve)
+Sürüklemeyi etkinleştir(OynatıcıListÇerçevesi)
+enableResizing(Çerçeve, Yeniden BoyutlandırmaDüğmesi)
+enableResizing(OynatıcıListÇerçevesi, Yeniden BoyutlandırmaDüğmesi2)
+
+-- Oyuncu listesi güncelleme fonksiyonu
+yerel fonksiyon updatePlayerList()
+    _ için, çocuk çiftler halinde(KaydırmaÇerçevesi:ÇocuklarıGet()) yap
+        eğer çocuk:IsA("TextButton") ise
+            çocuk:Yok Et()
+        son
+    son
+
+    yerel yOffset = 5
+    _ için, oyuncu çiftler halinde(Oyuncular:OyuncularıGet()) yap
+        yerel PlayerButton = Instance.new("TextButton")
+        OyuncuDüğmesi.Boyutu = UDim2.new(0.962, 0, 0, 30)
+        PlayerButton.Pozisyon = UDim2.new(0.019, 0, 0, yOffset)
+        PlayerButton.Text = oyuncu.Adı
+        PlayerButton.ArkaplanRengi3 = Color3.fromRGB(100, 100, 100)
+        PlayerButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        PlayerButton.Parent = KayanÇerçeve
+
+        PlayerButton.MouseButton1Click:Connect(fonksiyon()
+            eğer player.Character ve player.Character:FindFirstChild("HumanoidRootPart") ve LocalPlayer.Character ve LocalPlayer.Character:FindFirstChild("HumanoidRootPart") ise
+                LocalPlayer.Character.HumanoidRootPart.CFrame = oynatıcı.Character.HumanoidRootPart.CFrame
+            son
+        son)
+
+        yOfseti = yOfseti + 35
+    son
+    KaydırmaÇerçevesi.TuvalBoyutu = UDim2.new(0, 0, 0, yOffset)
+son
+
+-- Şifre kontrolü
+local correctPassword = "Sydearr" -- Şifre değiştirildi
+ConfirmButton.MouseButton1Click:Connect(fonksiyon()
+    eğer TextBox.Text == doğruŞifre ise o zaman
+        Çerçeve.Görünür = false
+        PlayerListFrame.Visible = true
+        OyuncuListesi'ni güncelle()
+        HataEtiketi.Metin = ""
+    başka
+        ErrorLabel.Text = "İfre Hatası!"
+        BipSound:Oynat()
+    son
+son)
+
+-- AÃ§ma/Kapama olay butonuÄ±
+ToggleButton.MouseButton1Click:Connect(fonksiyon()
+    PlayerListFrame.Visible = false
+    Çerçeve.Görünür = true
+son)
+
+-- Oyuncu ekleme/İkma olaylarıÄ±
+Oyuncular.OyuncuEklendi:Bağlan(OyuncuListesiGüncelle)
+Oyuncular.OyuncuKaldırma:Bağlan(OyuncuListesiGüncelle)
+
+-- Karakterin yükseltilmesi bekle
+LocalPlayer.CharacterAdded:Bağlan(fonksiyon()
+    OyuncuListesi'ni güncelle()
+son)
