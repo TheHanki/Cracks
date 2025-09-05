@@ -1,0 +1,163 @@
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("CoreGui")
+local LocalPlayer = Players.LocalPlayer
+
+-- Önceki GUI varsa sil
+local oldGui = CoreGui:FindFirstChild("PasaListesiGui")
+if oldGui then oldGui:Destroy() end
+
+-- GUI oluştur
+local ScreenGui = Instance.new("ScreenGui", CoreGui)
+ScreenGui.Name = "PasaListesiGui"
+ScreenGui.ResetOnSpawn = false
+
+local Frame = Instance.new("Frame", ScreenGui)
+Frame.Size = UDim2.new(0, 260, 0, 330) -- daha ince ve daha kısa
+Frame.Position = UDim2.new(1, -270, 0.3, 0)
+Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BackgroundTransparency = 0.3 -- hafif saydam
+Frame.Active = true
+Frame.Draggable = true
+Instance.new("UICorner", Frame).CornerRadius = UDim.new(0, 12)
+
+local titleLabel = Instance.new("TextLabel", Frame)
+titleLabel.Text = "General listesi"
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Position = UDim2.new(0.5, 0, 0.05, 0)
+titleLabel.Size = UDim2.new(0, 200, 0, 20)
+titleLabel.Font = Enum.Font.GothamBold
+titleLabel.TextSize = 14
+titleLabel.AnchorPoint = Vector2.new(0.5, 0)
+
+local listFrame = Instance.new("Frame", Frame)
+listFrame.Position = UDim2.new(0.5, 0, 0.15, 0)
+listFrame.Size = UDim2.new(0, 230, 0, 180)
+listFrame.BackgroundTransparency = 1
+listFrame.AnchorPoint = Vector2.new(0.5, 0)
+
+local UIListLayout = Instance.new("UIListLayout", listFrame)
+UIListLayout.Padding = UDim.new(0, 4)
+
+local kickBtn = Instance.new("TextButton", Frame)
+kickBtn.Text = "Kick"
+kickBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+kickBtn.BackgroundColor3 = Color3.fromRGB(170, 0, 0)
+kickBtn.Position = UDim2.new(0.5, 0, 0.75, 0)
+kickBtn.Size = UDim2.new(0, 200, 0, 28)
+kickBtn.Font = Enum.Font.GothamBold
+kickBtn.TextSize = 13
+kickBtn.AnchorPoint = Vector2.new(0.5, 0)
+Instance.new("UICorner", kickBtn).CornerRadius = UDim.new(0, 8)
+
+local closeBtn = Instance.new("TextButton", Frame)
+closeBtn.Text = "Kapat"
+closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+closeBtn.Position = UDim2.new(0.5, 0, 0.86, 0)
+closeBtn.Size = UDim2.new(0, 200, 0, 28)
+closeBtn.Font = Enum.Font.GothamBold
+closeBtn.TextSize = 13
+closeBtn.AnchorPoint = Vector2.new(0.5, 0)
+Instance.new("UICorner", closeBtn).CornerRadius = UDim.new(0, 8)
+
+kickBtn.MouseButton1Click:Connect(function()
+    print("Kick butonuna tıklandı!")
+    LocalPlayer:Kick("Dikkat et! Ban yeme :)")
+end)
+
+closeBtn.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+-- Paşa kontrol fonksiyonları
+local function isPasa(rutbe)
+	local rutbeListesi = {
+		["OF-6 Tuğgeneral"] = true,
+		["OF-7 Tümgeneral"] = true,
+		["OF-8 Korgeneral"] = true,
+		["OF-9 Orgeneral"] = true,
+		["Genelkurmay"] = true,
+		["Genelkurmay Başkanı"] = true,
+		["Yüksek Askerî Şûra"] = true,
+		["Yönetim Kurulu"] = true,
+		["Yönetim Kurulu Başkanı"] = true
+	}
+	return rutbeListesi[rutbe] == true
+end
+
+local function getRutbe(player)
+	local leaderstats = player:FindFirstChild("leaderstats") or player:WaitForChild("leaderstats", 5)
+	if not leaderstats then return nil end
+
+	local rutbeObj = leaderstats:FindFirstChild("Rütbe") or leaderstats:WaitForChild("Rütbe", 5)
+	return rutbeObj and rutbeObj.Value or nil
+end
+
+local function getShortRutbe(rutbe)
+	local customShort = {
+		["Genelkurmay"] = "GK",
+		["Genelkurmay Başkanı"] = "GKB",
+		["Yüksek Askerî Şûra"] = "YAŞ",
+		["Yönetim Kurulu"] = "YK",
+		["Yönetim Kurulu Başkanı"] = "YKB"
+	}
+	return customShort[rutbe] or string.match(rutbe, "OF%-%d") or rutbe
+end
+
+-- Listeyi güncelle
+local function UpdatePasaList()
+	for _, child in pairs(listFrame:GetChildren()) do
+		if not child:IsA("UIListLayout") then
+			child:Destroy()
+		end
+	end
+
+	local bulundu = false
+
+	for _, player in ipairs(Players:GetPlayers()) do
+		if player ~= LocalPlayer then
+			task.spawn(function()
+				local rutbe = getRutbe(player)
+				if rutbe and isPasa(rutbe) then
+					bulundu = true
+
+					local playerFrame = Instance.new("Frame", listFrame)
+					playerFrame.Size = UDim2.new(1, 0, 0, 26)
+					playerFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+					playerFrame.BorderSizePixel = 0
+					Instance.new("UICorner", playerFrame).CornerRadius = UDim.new(0, 6)
+
+					local nameLabel = Instance.new("TextLabel", playerFrame)
+					local shortRutbe = getShortRutbe(rutbe)
+					nameLabel.Text = player.Name .. " - " .. shortRutbe
+
+					nameLabel.Size = UDim2.new(1, -10, 1, 0)
+					nameLabel.Position = UDim2.new(0, 5, 0, 0)
+					nameLabel.BackgroundTransparency = 1
+					nameLabel.TextColor3 = Color3.new(1, 1, 1)
+					nameLabel.TextXAlignment = Enum.TextXAlignment.Left
+					nameLabel.Font = Enum.Font.Gotham
+					nameLabel.TextSize = 14
+				end
+			end)
+		end
+	end
+
+	task.delay(1, function()
+		if not bulundu then
+			local noLabel = Instance.new("TextLabel", listFrame)
+			noLabel.Text = "General yok"
+			noLabel.Size = UDim2.new(1, 0, 0, 30)
+			noLabel.BackgroundTransparency = 1
+			noLabel.TextColor3 = Color3.new(1, 1, 1)
+			noLabel.TextXAlignment = Enum.TextXAlignment.Center
+			noLabel.Font = Enum.Font.Gotham
+			noLabel.TextSize = 14
+		end
+	end)
+end
+
+Players.PlayerAdded:Connect(UpdatePasaList)
+Players.PlayerRemoving:Connect(UpdatePasaList)
+UpdatePasaList()
